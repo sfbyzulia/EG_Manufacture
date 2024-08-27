@@ -1,0 +1,13 @@
+<aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global">
+    <!-- Attribute for the Lead record -->
+    <aura:attribute name="lead" type="Object" />
+
+    <!-- Load the Lead record -->
+    <force:recordData 
+        aura:id="leadRecord"
+        recordId="{!v.recordId}"
+        targetFields="{!v.lead}"
+        fields="Status"
+        mode="EDIT"
+        recordUpdated="{!c.updateLeadStatus}" />
+</aura:component>
