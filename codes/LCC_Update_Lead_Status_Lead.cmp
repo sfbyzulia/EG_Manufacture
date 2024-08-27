@@ -1,13 +1,28 @@
 <aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global">
     <!-- Attribute for the Lead record -->
     <aura:attribute name="lead" type="Object" />
+    
+    <!-- Attribute for the user comment -->
+    <aura:attribute name="userComment" type="String" />
 
-    <!-- Load the Lead record -->
-    <force:recordData 
-        aura:id="leadRecord"
-        recordId="{!v.recordId}"
-        targetFields="{!v.lead}"
-        fields="Status"
-        mode="EDIT"
-        recordUpdated="{!c.updateLeadStatus}" />
+    <!-- Form for the user to input a comment -->
+    <lightning:card title="Update Lead Status" iconName="action:update_status">
+        <lightning:textarea aura:id="commentInput" 
+                            label="Commentaire (Optionnel)" 
+                            placeholder="Ajoutez un commentaire ici..." />
+        
+        <!-- Button to submit the update -->
+        <lightning:button label="Mettre à jour le statut" 
+                          variant="brand" 
+                          onclick="{!c.updateLeadStatus}"
+                          class="slds-m-top_medium" />
+        
+        <!-- Load the Lead record -->
+        <force:recordData 
+            aura:id="leadRecord"
+            recordId="{!v.recordId}"
+            targetFields="{!v.lead}"
+            fields="Status"
+            mode="EDIT" />
+    </lightning:card>
 </aura:component>
